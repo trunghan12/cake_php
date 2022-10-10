@@ -5,7 +5,7 @@
     header("location: login.php");
   }
   date_default_timezone_set('Asia/Ho_Chi_Minh');
-  include("../connection.php");
+  $conn = include("../connection.php");
   include("../common.php");
 ?>
 <!DOCTYPE html>
