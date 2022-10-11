@@ -24,6 +24,12 @@ $conn = include("../connection.php");
         <div class="x_content">
             <br>
             <?php
+
+            if(isset($_POST['update_category'])){
+                $cat_id = $_POST['cat_id'];
+                echo $cat_id;
+                die();
+            }
             //them moi
             if(isset($_POST['addNew'])){
                 $cat_name = $_POST['cat_name'];
@@ -37,7 +43,6 @@ $conn = include("../connection.php");
                 $fileName="";
                 $image = "";
                 if(isset($_FILES["image"])){
-
                      $path = 'uploads';
                     if(isset($_FILES["image"]["name"])){
                         if($_FILES["image"]["type"]){
@@ -69,13 +74,27 @@ $conn = include("../connection.php");
                 $query_insert_cat = "INSERT INTO tbl_category values('','$cat_name','$image','$status','$date_create','$date_update')";
                 mysqli_query($conn,$query_insert_cat);
                 header('location: index.php?page=category');
+            }elseif(isset($_GET['del']) && $_GET['del']==1){
+                $cat_id = $_GET['id'];
+                $query_delete_category = "delete from tbl_category where cat_id = '$cat_id'";
+                mysqli_query($conn,$query_delete_category);
+                header('location: index.php?page=category');
+            }elseif(isset($_GET['edit']) && $_GET['edit']==1){
+                $cat_id = $_GET['id'];
+                $query_select_cat_id = "select * from tbl_category where cat_id = '$cat_id'";
+                $result_select_cat_id = mysqli_query($conn,$query_select_cat_id);
+                if(mysqli_num_rows($result_select_cat_id)>0){
+                    $row_select_cat_id = mysqli_fetch_assoc($result_select_cat_id);
+                }
+                $category_edit = $row_select_cat_id;
             }
+
             ?>
             <form class="form-label-left input_mask" method="post" enctype='multipart/form-data'>
                 <div class="form-group row">
                     <label style="font-size: 16px;" class="col-form-label col-md-3 col-sm-3 ">Tên danh mục</label>
                     <div class="col-md-9 col-sm-9 ">
-                        <input type="text" class="form-control" value="" name="cat_name" id="cat_name" placeholder="Tên danh mục">
+                        <input type="text" class="form-control" value="<?php echo isset($category_edit['cat_name'])?$category_edit['cat_name']:'' ?>" name="cat_name" id="cat_name" placeholder="Tên danh mục">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -89,17 +108,27 @@ $conn = include("../connection.php");
                     <div class="col-md-9 col-sm-9 ">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" value="1"  name="status" id="status"> Ẩn/Hiển thị
+                                <input type="checkbox" value="1" <?php echo isset($category_edit['status']) && $category_edit['status']==1 ?"checked":"" ?> name="status" id="status"> Ẩn/Hiển thị
                             </label>
                         </div>
                     </div>
                 </div>
+                <?php
+                    if(isset($category_edit)){ ?>
+                        <input type="hidden" name="cat_id" value="<?php echo $category_edit['cat_id'] ?>">
+                <?php }  ?>
                 <div class="ln_solid"></div>
                 <div class="form-group row">
                     <div class="col-md-9 col-sm-9  offset-md-3">
                         <button type="button" class="btn btn-primary">Cancel</button>
                         <button class="btn btn-primary" type="reset">Reset</button>
-                        <button type="submit" class="btn btn-success" name="addNew">Submit</button>
+                        <?php
+                            if(isset($category_edit)){ ?>
+                                <button type="submit" class="btn btn-danger" name="update_category">Update</button>
+                        <?php }else{ ?>
+                                <button type="submit" class="btn btn-success" name="addNew">Submit</button>
+                        <?php }  ?>
+
                     </div>
                 </div>
             </form>
