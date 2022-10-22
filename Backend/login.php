@@ -47,10 +47,10 @@
                         $userName = trim($_POST["user_name"]);
                         $password = md5(trim($_POST["password"]));
                         $sqlLogin = "SELECT *FROM tbl_user WHERE user_name='$userName' AND password='$password'";
-                        $result = mysqli_query($conn,$sqlLogin);
-                        if(mysqli_num_rows($result)){
+                        $result = $conn->query($sqlLogin);
+                        if($result->rowCount()){
                             // tạo session
-                            $rowlogin = mysqli_fetch_row($result);
+                            $rowlogin = $result->fetch();
                             $_SESSION["login"]= $rowlogin;
                             header("location: index.php");
                         }else{

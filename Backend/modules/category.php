@@ -1,5 +1,5 @@
 <?php
-$conn = include("../connection.php");
+    $conn = include("../connection.php");
 ?>
 
 <div class="col-md-12">
@@ -25,25 +25,24 @@ $conn = include("../connection.php");
             <br>
             <?php
 
-            if(isset($_POST['update_category'])){
-                $cat_id = $_POST['cat_id'];
-                echo $cat_id;
-                die();
-            }
             //them moi
             if(isset($_POST['addNew'])){
                 $cat_name = $_POST['cat_name'];
                 $status = isset($_POST['status'])?1:0;
                 $date_create = Date("Y-m-d H:i:s");
                 $date_update = Date("Y-m-d H:i:s");
-                $image = "";
-                //xu li anh
+                
+                $category_edit['cat_name']='';
+                $category_edit['status'] = false;
+                
                 //xu li image
                 $path="uploads";
                 $fileName="";
                 $image = "";
+                //$category_edit['image']='';
+
                 if(isset($_FILES["image"])){
-                     $path = 'uploads';
+                    $path = 'uploads';
                     if(isset($_FILES["image"]["name"])){
                         if($_FILES["image"]["type"]){
                             if($_FILES["image"]["type"] == "image/jpeg" || $_FILES["image"]["type"] == "image/png" || $_FILES["image"]["type"] == "image/gif" || $_FILES["image"]["type"] == "image/jpg"){
@@ -69,24 +68,35 @@ $conn = include("../connection.php");
                             echo "Bạn chưa chọn file";
                         }
                     }
-
                 }
-                $query_insert_cat = "INSERT INTO tbl_category values('','$cat_name','$image','$status','$date_create','$date_update')";
-                mysqli_query($conn,$query_insert_cat);
-                header('location: index.php?page=category');
+
+                if(isset($_GET['id'])){
+                    if($image == ""){
+                        $query_select_cat_id = "select * from tbl_category where cat_id =".$_GET['id'];
+                        $result_select_cat_id = $conn->query($query_select_cat_id);
+                        $row_select_cat_id = $result_select_cat_id->fetch();
+                        $image = $row_select_cat_id['image'];
+                    }
+                    $sqlUpdate = "UPDATE tbl_category SET cat_name='$cat_name', image='$image',`status`='$status',  date_update='$date_update'WHERE cat_id=".$_GET['id'];
+                    $conn->query($sqlUpdate);
+                    header('location: index.php?page=category');
+                }else{
+                    $query_insert_cat = "INSERT INTO tbl_category values('','$cat_name','$image','$status','$date_create','$date_update')";
+                    $conn->query($query_insert_cat);
+                    header('location: index.php?page=category');
+                } 
             }elseif(isset($_GET['del']) && $_GET['del']==1){
                 $cat_id = $_GET['id'];
                 $query_delete_category = "delete from tbl_category where cat_id = '$cat_id'";
-                mysqli_query($conn,$query_delete_category);
+                $conn->query($query_delete_category);
                 header('location: index.php?page=category');
-            }elseif(isset($_GET['edit']) && $_GET['edit']==1){
-                $cat_id = $_GET['id'];
-                $query_select_cat_id = "select * from tbl_category where cat_id = '$cat_id'";
-                $result_select_cat_id = mysqli_query($conn,$query_select_cat_id);
-                if(mysqli_num_rows($result_select_cat_id)>0){
-                    $row_select_cat_id = mysqli_fetch_assoc($result_select_cat_id);
-                }
-                $category_edit = $row_select_cat_id;
+            }elseif(isset($_GET['id'])){
+                $query_select_cat_id = "select * from tbl_category where cat_id =".$_GET['id'];
+                $result_select_cat_id = $conn->query($query_select_cat_id);
+                $row_select_cat_id = $result_select_cat_id->fetch();
+                
+                $category_edit['cat_name'] = $row_select_cat_id['cat_name'];
+                $category_edit['status'] = ($row_select_cat_id['status']?true:false);
             }
 
             ?>
@@ -114,17 +124,17 @@ $conn = include("../connection.php");
                     </div>
                 </div>
                 <?php
-                    if(isset($category_edit)){ ?>
-                        <input type="hidden" name="cat_id" value="<?php echo $category_edit['cat_id'] ?>">
-                <?php }  ?>
+                    //if(isset($category_edit)){ ?>
+                        <!-- <input type="hidden" name="cat_id" value="<?php //echo $category_edit['cat_id'] ?>"> -->
+                <?php //}  ?>
                 <div class="ln_solid"></div>
                 <div class="form-group row">
                     <div class="col-md-9 col-sm-9  offset-md-3">
-                        <button type="button" class="btn btn-primary">Cancel</button>
+                        <button type="button" class="btn btn-danger">Cancel</button>
                         <button class="btn btn-primary" type="reset">Reset</button>
                         <?php
                             if(isset($category_edit)){ ?>
-                                <button type="submit" class="btn btn-danger" name="update_category">Update</button>
+                                <button type="submit" class="btn btn-success" name="addNew">Update</button>
                         <?php }else{ ?>
                                 <button type="submit" class="btn btn-success" name="addNew">Submit</button>
                         <?php }  ?>
@@ -136,7 +146,7 @@ $conn = include("../connection.php");
     </div>
     <div class="x_panel">
         <div class="x_title">
-            <h2>Danh sách sản phẩm</h2>
+            <h2>Danh sách loại sản phẩm</h2>
             <ul class="nav navbar-right panel_toolbox">
                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                 </li>
@@ -152,7 +162,7 @@ $conn = include("../connection.php");
             </ul>
             <div class="clearfix"></div>
         </div>
-        <a href="index.php?page=addcategogy" class="btn btn-primary text-white mt-3 mb-3">Thêm mới <i class="fa fa-plus"></i></a>
+        <!-- <a href="index.php?page=addcategogy" class="btn btn-primary text-white mt-3 mb-3">Thêm mới <i class="fa fa-plus"></i></a> -->
         <div class="x_content">
             <table class="table table-bordered">
                 <thead>
@@ -171,10 +181,10 @@ $conn = include("../connection.php");
                 // Câu lệnh select lấy dữ liệu
                 $sqlSelect = "SELECT * FROM tbl_category";
                 // thực thi truy vấn
-                $result = mysqli_query($conn, $sqlSelect) or die("Lỗi truy vấn lấy dữ liệu");
-                if (mysqli_num_rows($result) > 0) {
+                $result = $conn->query($sqlSelect) or die("Lỗi truy vấn lấy dữ liệu");
+                if ($result->rowCount() > 0) {
                     $i = 0;
-                    while($row = mysqli_fetch_assoc($result)) {
+                    while($row = $result->fetch()) {
                         $i++;
                         ?>
                         <tr>

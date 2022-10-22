@@ -20,6 +20,6 @@
         }
         $sqlInsert = "INSERT INTO $table($field)";
         $sqlInsert .= "values($val)";
-        mysqli_query($conn, $sqlInsert) or die("Lỗi câu lệnh thêm mới");
+        $conn->query($sqlInsert) or die("Lỗi câu lệnh thêm mới");
     }
 ?>
