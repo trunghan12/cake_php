@@ -24,7 +24,7 @@
                         <h6 class="text-uppercase mb-1">Call Us</h6>
                         <span>+012 345 6789</span>
                     </div>
-                    <div class="beta-select ml-1"><i class="fas fa-shopping-cart fs-1 text-primary me-3"></i> Giỏ hàng (trống) <i class="fa fa-chevron-down"></i></div>
+                    <div class="beta-select ml-1"><a href="index.php?page=cart" class="fas fa-shopping-cart fs-1 text-primary me-3"></a> Giỏ hàng (trống) <i class="fa fa-chevron-down"></i></div>
                 </div>
             </div>
         </div>

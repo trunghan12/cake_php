@@ -1,4 +1,6 @@
 <?php
+    ob_start();
+    session_start();   
     include("../connection.php");
 ?>
 <!DOCTYPE html>
@@ -72,6 +74,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>
     <script>
         function plus(){
             num = parseInt($("#quantity").val());// lấy giá trị của ô input
@@ -87,19 +90,27 @@
             $("#quantity").val(tem);//gán lại giá trị
         }
 
-        function addCart(id){
-            num = parseInt($("#quantity").val());
-                
-            
-                $.GET({
-                    url: "addcart.php",
-                    data: {num:num,id:id},
-                    success: function(){
-                        alert("Thanh cong");
+
+        $(document).ready(function(){
+            $('.btn_add_cart').click(function(){
+                const num = parseInt($("#quantity").val());
+                const id_product = $(this).attr('id');
+                $.post({
+                    url:"addcart.php",
+                    data:{num:num,id_product:id_product},
+                    success:function(data){
+                        alert(data);
                     }
 
                 });
-        }
+            });
+        });
+
+        // function addtocart(id){
+        //     num = parseInt($("#quantity").val());
+        //     $.post("addcart.php",{'id': id, 'number': num},function(data,status) {
+        //     });
+        // }
     </script>
 </body>
 

@@ -4,7 +4,7 @@
         if(isset($_GET["id"])){
             $id = $_GET["id"];
             $sqlDetailPro = "SELECT *FROM tbl_product WHERE pro_id= $id";
-            $resultDetailPro = $conn->query("$sqlDetailPro");
+            $resultDetailPro = $conn->query($sqlDetailPro);
             $rowDetail = $resultDetailPro->fetch();
             // echo "<pre>";
             // print_r($rowDetail);
@@ -44,8 +44,9 @@
                             <input type="button" value="+" class="plus button is-form btn btn-primary" onclick = "plus()">	
                         </div>
                         <div class="col-md-8" style="margin-top: 55px;">
-                            <p class="addtocart">
-                                <a href="javascript:void(0)" onclick="addCart(<?php echo $rowDetail[0]; ?>)" class="btn btn-primary btn-addtocart" >Thêm vào giỏ hàng</a>
+                        <p class="addtocart">
+                                <button id="<?php echo $rowDetail[0] ?>" style="height: 40px;" class="btn btn-primary btn_add_cart btn-addtocart">Thêm vào giỏ hàng</buntton>
+                                <!-- <a href="javascript:void(0)" onclick="addCart()" class="btn btn-primary btn-addtocart" >Thêm vào giỏ hàng</a> -->
                             </p>
                         </div>
                         
