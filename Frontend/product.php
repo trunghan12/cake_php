@@ -4,10 +4,10 @@
 <div class="container-fluid bg-dark bg-img p-5 mb-5">
     <div class="row">
         <div class="col-12 text-center">
-            <h1 class="display-4 text-uppercase text-white">Menu & Pricing</h1>
-            <a href="">Home</a>
+            <h1 class="display-4 text-uppercase text-white">Thực đơn & Giá</h1>
+            <a href="">Trang chủ</a>
             <i class="far fa-square text-primary px-2"></i>
-            <a href="">Menu & Pricing</a>
+            <a href="">Thực đơn & Giá</a>
         </div>
     </div>
 </div>
@@ -18,8 +18,8 @@
 <div class="container-fluid about ">
     <div class="container">
         <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-            <h2 class="text-primary font-secondary">Menu & Pricing</h2>
-            <h1 class="display-4 text-uppercase">Explore Our Cakes</h1>
+            <h2 class="text-primary font-secondary">Thực đơn & Giá</h2>
+            <span class="font-secondary" style="font-size: 22px;">Khám phá các loại bánh của chúng tôi</span>
         </div>
         <div class="container">
             <div id="content" class="space-top-none">
@@ -110,8 +110,12 @@
 
                                                         <div class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
                                                             <div class="btn-group-vertical">
-                                                                <button type="button" class="btn btn-primary" ><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
-                                                                <button type="button" class="btn btn-primary mt-3"><i class="fa fa-credit-card"></i> Mua ngay</button>
+                                                                <button type="button" class="btn btn-primary" ><a class=" btn btn-primary" href="index.php?page=detail&id=<?php echo $rowPro["pro_id"] ?>"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng </a></button>
+                                                                <form action="muangay_home.php" method="post" class=" btn btn-primary mt-3 ">
+                                                                    <input type="hidden" name="id_product" value="<?php echo $rowPro["pro_id"] ?>">
+
+                                                                    <button type="submit" class="btn btn-primary " name="buy_cart" ><i class="fa fa-credit-card "></i> Mua ngay </button>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -130,7 +134,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="beta-products-list">
+                            <div class="beta-products-list" style="margin-top: 100px;">
                                 <h4>Sản phẩm bán chạy</h4>
                                 <div id="tab-1" class="tab-pane fade show p-0 active">
                                     <div class="row g-3">
@@ -155,7 +159,7 @@
 
                                                             <div class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
                                                                 <div class="btn-group-vertical">
-                                                                    <button type="button" class="btn btn-primary" ><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
+                                                                    <button type="button" class="btn btn-primary" id="addPro" ><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
                                                                     <button type="button" class="btn btn-primary mt-3"><i class="fa fa-credit-card"></i> Mua ngay</button>
                                                                 </div>
                                                             </div>

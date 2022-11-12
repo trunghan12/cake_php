@@ -10,7 +10,7 @@
             <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
             <img src="images/img.jpg" alt=""> <?php 
                 if(isset($_SESSION["login"])){
-                    echo $_SESSION["login"][1];
+                    echo "Admin";
                 }
             ?>
             </a>

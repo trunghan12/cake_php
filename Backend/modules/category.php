@@ -86,11 +86,13 @@
                     header('location: index.php?page=category');
                 } 
             }elseif(isset($_GET['del']) && $_GET['del']==1){
+                //xóa sản phẩm
                 $cat_id = $_GET['id'];
                 $query_delete_category = "delete from tbl_category where cat_id = '$cat_id'";
                 $conn->query($query_delete_category);
                 header('location: index.php?page=category');
             }elseif(isset($_GET['id'])){
+                //cập nhật sản phẩm
                 $query_select_cat_id = "select * from tbl_category where cat_id =".$_GET['id'];
                 $result_select_cat_id = $conn->query($query_select_cat_id);
                 $row_select_cat_id = $result_select_cat_id->fetch();

@@ -44,9 +44,9 @@
                     if(isset($_POST["login"])){
                         // echo "<pre>";
                         // print_r($_POST);
-                        $userName = trim($_POST["user_name"]);
+                        $email = trim($_POST["email"]);
                         $password = md5(trim($_POST["password"]));
-                        $sqlLogin = "SELECT *FROM tbl_user WHERE user_name='$userName' AND password='$password'";
+                        $sqlLogin = "SELECT *FROM admin WHERE email='$email' AND password='$password'";
                         $result = $conn->query($sqlLogin);
                         if($result->rowCount()){
                             // tạo session
@@ -60,7 +60,7 @@
                 ?>
               <h1>Login Form</h1>
               <div>
-                <input type="text" class="form-control" id="user_name" name="user_name" placeholder="Username" required="" />
+                <input type="text" class="form-control" id="email" name="email" placeholder="Email" required="" />
               </div>
               <div>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password" required="" />

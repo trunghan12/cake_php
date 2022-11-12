@@ -46,7 +46,7 @@
         <div class="container">
             <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
                 <h2 class="text-primary font-secondary">Sản phẩm mới nhất</h2>
-                <h1 class="display-4 text-uppercase">Our Master Chefs</h1>
+                <span class="font-secondary" style="font-size: 22px;">Sản phẩm đảm bảo chất lượng và uy tín hàng đầu hiện nay</span>
             </div>
             <div class="row g-5">
                 <?php
@@ -68,8 +68,12 @@
 
                                 <div class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
                                     <div class="btn-group-vertical">
-                                        <button type="button" class="btn btn-primary" ><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
-                                        <button type="button" class="btn btn-primary mt-3"><i class="fa fa-credit-card"></i> Mua ngay</button>
+                                        <button type="button" class="btn btn-primary" ><a class=" btn btn-primary" href="index.php?page=detail&id=<?php echo $rowProHome["pro_id"] ?>"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng </a></button>
+                                        <form action="muangay_home.php" method="post" class=" btn btn-primary mt-3 ">
+                                            <input type="hidden" name="id_product" value="<?php echo $rowProHome["pro_id"] ?>">
+
+                                            <button type="submit" class="btn btn-primary " name="buy_cart" ><i class="fa fa-credit-card "></i> Mua ngay </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +92,7 @@
             </div>
             <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px; margin-top:100px">
                 <h2 class="text-primary font-secondary">Sản phẩm bán chạy nhất</h2>
-                <h1 class="display-4 text-uppercase">Our Master Chefs</h1>
+                <span class="font-secondary" style="font-size: 22px;">Sản phẩm đảm bảo chất lượng và uy tín hàng đầu hiện nay</span>
             </div>
             <div class="row g-5">
                 <?php
@@ -110,8 +114,12 @@
 
                                 <div class="team-overlay w-100 h-100 position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
                                     <div class="btn-group-vertical">
-                                        <button type="button" class="btn btn-primary" ><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
-                                        <button type="button" class="btn btn-primary mt-3"><i class="fa fa-credit-card"></i> Mua ngay</button>
+                                        <button type="button" class="btn btn-primary" ><a class=" btn btn-primary" href="index.php?page=detail&id=<?php echo $rowProHome["pro_id"] ?>"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng </a></button>
+                                        <form action="muangay_home.php" method="post" class=" btn btn-primary mt-3 ">
+                                            <input type="hidden" name="id_product" value="<?php echo $rowProHome["pro_id"] ?>">
+
+                                            <button type="submit" class="btn btn-primary " name="buy_cart" ><i class="fa fa-credit-card "></i> Mua ngay </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

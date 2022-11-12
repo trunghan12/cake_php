@@ -1,6 +1,6 @@
 <!-- Contact Start -->
 <div class="container-fluid contact position-relative px-5" style="margin-top: 90px;">
-<div class="container">
+<div class="container login">
     <div class="row g-5 mb-5">
         <div class="col-lg-4 col-md-6">
             <div class="bg-primary border-inner text-center text-white p-5">
@@ -27,7 +27,7 @@
     <!-- from đăng nhập -->
 
     <div id="content" style="margin-top: 100px;">
-        <form method="post" class="beta-form-checkout">
+        <form method="post" class="beta-form-checkout" action="loginSubmit.php">
             <div class="row">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-6 text-white">
@@ -40,11 +40,11 @@
                     </div>
                     <div class="form-block">
                         <label for="phone">Mật khẩu*</label>
-                        <input type="password" class="form-control" name="passward" value="" id="passward" required="">
+                        <input type="password" class="form-control" name="password" value="" id="password" required="">
                     </div>
                     <div class="form-block mt-3" style="display: flex; justify-content: center;">
-                        <a href="dangKy.html"><button type="button" class="btn btn-secondary">Đăng Ký</button></a>
-                        <button type="submit" name="login" class="btn btn-primary" style="margin-left: 20px;">Đăng nhập</button>
+                        <a href="index.php?page=register"><button type="button" class="btn btn-secondary">Đăng Ký</button></a>
+                        <button type="submit" name="login" class="btn btn-primary" style="margin-left: 20px;">Submit</button>
                     </div>
                     
                 </div>
@@ -57,4 +57,9 @@
 </div>
 </div>
 <!-- Contact End -->
-    
+<div class="container">
+    <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px; margin-top:100px">
+        <h2 class="text-primary font-secondary"></h2>
+        <h1 class="display-4 text-uppercase"></h1>
+    </div>
+</div>

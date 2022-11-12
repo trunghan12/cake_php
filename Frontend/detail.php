@@ -12,16 +12,21 @@
     ?>
     <div class="container ">
         <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px;">
-            <h2 class="text-primary font-secondary">About Us</h2>
-            <h1 class="display-4 text-uppercase">Welcome To CakeZone</h1>
+            <h2 class="text-primary font-secondary">Về chúng tôi</h2>
+            <h1 class="display-4 text-uppercase">Chào mừng đến với CakeZone</h1>
         </div>
         <div class="row gx-5">
             <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 400px;">
                 <div class="position-relative h-100">
-                    <img class="position-absolute w-100 h-100" src="../uploads/<?php echo $rowDetail["image"]?>" alt="<?php echo $rowDetail["pro_name"]?> style="object-fit: cover;">
+                    <img class="position-absolute w-100 h-100" src="../uploads/<?php echo $rowDetail["image"]?>" alt="<?php echo $rowDetail["pro_name"]?>" style="object-fit: cover;">
                 </div>
             </div>
             <div class="col-lg-6 pb-5">
+                <!--  -->
+                <div id="alert_success">
+                    
+                </div>
+            <!--  -->
                 <h4 class="text-uppercase text-dark"><?php echo $rowDetail[1]?></h4>
                 <div class="single-item-body">
                     <p class="single-item-price  m-0">
@@ -31,12 +36,12 @@
                 </div>
                 <hr>
                 <p class="text-justify"><?php echo $rowDetail[4]?></p>
-                <div>
-                    <h4 class="text-uppercase text-dark">Size</h4>
-                </div>
-                <button type="button" class="btn btn-outline-warning">Nhỏ</button>
-                <button type="button" class="btn btn-outline-warning">Trung Bình</button>
-                <button type="button" class="btn btn-outline-warning">Lớn</button>
+                <label style="margin-top: 8px; margin-right: 10px;"> <h4 class="text-uppercase text-dark">Cở: </h4> </label>
+                <select class="wc-select" required id="size">
+                    <option selected value="Nhỏ">Nhỏ</option>
+                    <option value="Vừa">Vừa</option>
+                    <option value="Lớn">Lớn</option>
+                </select>
                 <div class="woocommerce-variation-add-to-cart variations_button woocommerce-variation-add-to-cart-disabled row" style="margin-top: 55px;">
                         <div class="quantity buttons_added col-md-5">
                             <input type="button" value="-" class="minus button is-form btn btn-primary" onclick = "minus()">				
@@ -46,6 +51,7 @@
                         <div class="col-md-8" style="margin-top: 55px;">
                         <p class="addtocart">
                                 <button id="<?php echo $rowDetail[0] ?>" style="height: 40px;" class="btn btn-primary btn_add_cart btn-addtocart">Thêm vào giỏ hàng</buntton>
+                                <a class=" btn-primary" href="index.php?page=cart"><button id="<?php echo $rowDetail[0] ?>" style="height: 40px; margin-left: 20px;" class="btn btn-primary btn_add_cart btn-addtocart">Mua ngay</buntton> </a>
                                 <!-- <a href="javascript:void(0)" onclick="addCart()" class="btn btn-primary btn-addtocart" >Thêm vào giỏ hàng</a> -->
                             </p>
                         </div>

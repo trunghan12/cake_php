@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-12 text-center">
             <h1 class="display-4 text-uppercase text-white">Liên hệ với chúng tôi</h1>
-            <a href="index.html">Trang chủ</a>
+            <a href="index.php">Trang chủ</a>
             <i class="far fa-square text-primary px-2"></i>
             <a href="contact.html">Liên hệ</a>
         </div>
@@ -63,7 +63,13 @@
     </div>  
 </div>
 <!-- Contact End -->
-
+<div class="container">
+        <div class="section-title position-relative text-center mx-auto mb-5 pb-3" style="max-width: 600px; margin-top:100px">
+            <h2 class="text-primary font-secondary"></h2>
+            <h1 class="display-4 text-uppercase"></h1>
+        </div>
+        
+    </div>
 <!-- google map -->
 <div class="container mt-5">
     <div class="row">
@@ -85,5 +91,4 @@
         </div>
     </div>
 </div>  
-    
     

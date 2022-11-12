@@ -114,6 +114,22 @@
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        $(".btn_order_confirm").click(function(){
+          const order_id = $(this).attr('id');
+          $.get({
+            url:"update_order_admin.php",
+            data:{order_id:order_id},
+            success: function(data){
+              $('.btn_order_confirm'+ data).removeClass('btn btn-sm btn-primary btn_order_confirm');
+              $('.btn_order_confirm'+ data).html('Đang giao hàng');
+            }
+          });
+        });
+      });
+    </script>
 	
   </body>
 </html>
